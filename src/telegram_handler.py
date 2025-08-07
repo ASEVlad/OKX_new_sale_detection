@@ -50,8 +50,7 @@ def handle_telegram_updates():
 
                 handled_updates = retrieve_handled_updates()
                 if update_id in handled_updates:
-                    logger.info("No updates from telegram.")
-                    return True
+                    continue
 
                 if message_text.lower() == "/start":
                     if chat_id not in load_registered_users():
