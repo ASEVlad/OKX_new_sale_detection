@@ -24,6 +24,8 @@ def load_registered_users():
         return []
 
 def save_registered_user(chat_id):
+    if not os.path.exists(PERSISTENT_USER_FILE):
+        open(PERSISTENT_USER_FILE, "w").close()
     """Saves a new user's chat_id to the file."""
     with open(PERSISTENT_USER_FILE, "a") as f:
         f.write(str(chat_id) + "\n")
