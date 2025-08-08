@@ -23,14 +23,15 @@ def main():
         # Check for new sales
         current_dapps = get_current_dapps()
         previous_dapps = retrieve_dapps()
-        new_dapps = current_dapps - previous_dapps
-        save_dapps(current_dapps.union(previous_dapps))
+        if current_dapps and previous_dapps:
+            new_dapps = current_dapps - previous_dapps
+            save_dapps(current_dapps.union(previous_dapps))
 
-        # if new sales appear -> send notification
-        if new_dapps:
-            new_dapps_str = "  |  ".join(new_dapps)
-            notification_message = f"🚨 New Sale Detected on web3.okx.com!  {new_dapps_str}"
-            send_irritative_notification_to_all_users(notification_message)
+            # if new sales appear -> send notification
+            if new_dapps:
+                new_dapps_str = "  |  ".join(new_dapps)
+                notification_message = f"🚨 New Sale Detected on web3.okx.com!  {new_dapps_str}"
+                send_irritative_notification_to_all_users(notification_message)
 
         # Wait before the next check
         logger.info(f"Waiting for {CHECK_INTERVAL_SECONDS} seconds...")
