@@ -4,3 +4,4 @@ data/*
 .env
 logfile.log
 test.ipynb
+venv

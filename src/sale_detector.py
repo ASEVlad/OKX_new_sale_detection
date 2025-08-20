@@ -1,4 +1,6 @@
 import os
+import re
+
 import requests
 from loguru import logger
 from bs4 import BeautifulSoup
@@ -22,7 +24,7 @@ def get_current_dapps():
 
         current_dapps = []
         for div in divs:
-            current_dapps.append(div.text.split(' ')[0])
+            current_dapps.append(re.match(r"^.*?[a-z](?=[A-Z])", div.text).group(0))
 
         return set(current_dapps)
 
